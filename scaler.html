@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>event.target</title>
+  </head>
+
+  <body>
+    <input type="text" name="" id="inp_text" />
+
+    <script>
+      let inputBox = document.getElementById("inp_text");
+      inputBox.addEventListener("input", (event) => {
+        // The event.target property returns the HTML element that triggered an event.
+        console.log(event.target);
+      });
+    </script>
+  </body>
+</html>
