@@ -10,24 +10,26 @@
     <title>Trivia!</title>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Select all buttons with the class "option"
+        // Select all the buttons with 'correct' class
         let buttons = document.querySelectorAll(".correct");
-        // Add an event listener to each button
+        // Add event listner to all correct button
         buttons.forEach(function (button) {
           button.addEventListener("click", function (event) {
-            let score = "Correct";
-            // Correct answer
             event.target.style.backgroundColor = "green";
-            document.querySelector(".marks").innerText = score;
+            event.target.parentElement.querySelector(".marks").innerHTML =
+              "Correct";
           });
         });
-        // Wrong answer
-        let wrong_button = document.querySelectorAll(".wrong");
-        wrong_button.forEach(function (button) {
+        // Select all the button with 'wrong' class
+        let wrong_buttons = document.querySelectorAll(".wrong");
+
+        // Add event listner to all wrong button
+        wrong_buttons.forEach(function (button) {
           button.addEventListener("click", function (event) {
-            let score = "Wrong";
             event.target.style.backgroundColor = "red";
-            document.querySelector(".marks").innerText = score;
+            event.target.parentElement.querySelector(".marks").innerHTML =
+              "Wrong!";
+            // document.querySelector(".marks").innerText = score;
           });
         });
       });
@@ -39,20 +41,23 @@
         // Get the input element corresponding to the button
         let input = button.parentElement.querySelector("input");
 
+        // Check for correct answer
         if (
           input.value === "the sperm whale" ||
           input.value === "sperm whale"
         ) {
           input.style.backgroundColor = "Green";
-          input.parentElement.querySelector(".feedback").innerHTML = "Correct!";
+          // input.parentElement.querySelector(".feedback").innerHTML = "Correct!";
+          // The above one should be used when there is a feedback class for below every answer
+          document.querySelector(".free_response01").innerText = "Correct!";
         } else {
           input.style.backgroundColor = "red";
-          input.parentElement.querySelector(".feedback").innerHTML =
-            "Incorrect!";
+          document.querySelector(".free_response01").innerText = "Incorrect!";
         }
       }
     </script>
   </head>
+
   <body>
     <div class="header">
       <h1>Trivia!</h1>
@@ -63,21 +68,25 @@
         <h2>Part 1: Multiple Choice</h2>
         <hr />
         <h3>What are the only two mammals that lay eggs?</h3>
-        <h4 class="marks"></h4>
-        <button class="correct">Echidna and platypus</button>
-        <button class="wrong">Zebu and xerus</button>
-        <button class="wrong">Wombat and wolverine</button>
-        <button class="wrong">Whoodle and woodrat</button>
+        <div>
+          <h4 class="marks"></h4>
+          <button class="correct">Echidna and platypus</button>
+          <button class="wrong">Zebu and xerus</button>
+          <button class="wrong">Wombat and wolverine</button>
+          <button class="wrong">Whoodle and woodrat</button>
+        </div>
         <hr />
         <h3>
           What bird, extinct by 1681, was named for the Portuguese word for
           "stupid"?
         </h3>
-        <h4 class="marks"></h4>
-        <button class="correct">Dodo</button>
-        <button class="wrong">Carolina Parakeet</button>
-        <button class="wrong">Hawaii ʻōʻō</button>
-        <button class="wrong">Laughing Owl</button>
+        <div>
+          <h4 class="marks"></h4>
+          <button class="correct">Dodo</button>
+          <button class="wrong">Carolina Parakeet</button>
+          <button class="wrong">Hawaiʻi ʻōʻō</button>
+          <button class="wrong">Laughing Owl</button>
+        </div>
         <hr />
       </div>
 
@@ -85,9 +94,9 @@
         <h2>Part 2: Free Response</h2>
         <hr />
         <h3>What is the loudest animal on Earth?</h3>
+        <h4 class="free_response01"></h4>
         <input type="text" />
         <button onclick="checkFreeResponse(event)">Check Answer</button>
-        <!-- TODO: Add free response question here -->
       </div>
     </div>
   </body>
